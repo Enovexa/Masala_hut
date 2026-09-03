@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catering That Makes Every Event Memorable | Masala Hut</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-black: #120c09;
+      --char: #1c140f;
+      --ember: #d9601d;
+      --ember-light: #f0894a;
+      --chili: #b7291b;
+      --gold: #e8a93d;
+      --cream: #f4e9d8;
+      --cream-dim: rgba(244, 233, 216, 0.74);
+      --cream-faint: rgba(244, 233, 216, 0.4);
+      --olive: #6b5a42;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      background: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      color: var(--char);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    /* ---------- TOP BAR ---------- */
+    .post-topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px clamp(20px, 4vw, 56px);
+      background: transparent;
+    }
+
+    .post-topbar__logo {
+      display: flex;
+      align-items: center;
+      line-height: 0;
+    }
+
+    .post-topbar__logo img {
+      height: 110px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
+    }
+
+    .post-topbar__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      color: var(--cream);
+      border: 1px solid rgba(244, 233, 216, 0.55);
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(4px);
+      background: rgba(18, 12, 9, 0.25);
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .post-topbar__back svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .post-topbar__back:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--char);
+    }
+
+    .post-topbar__back:hover svg {
+      transform: translateX(-3px);
+    }
+
+    @media (max-width:600px) {
+      .post-topbar__logo img {
+        height: 74px;
+      }
+
+      .post-topbar__back span {
+        display: none;
+      }
+
+      .post-topbar__back {
+        padding: 11px 14px;
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    .post-hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: var(--bg-black);
+    }
+
+    .post-hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/5638732/pexels-photo-5638732.jpeg?auto=compress&cs=tinysrgb&w=1920');
+      background-size: cover;
+      background-position: center 48%;
+      transform: scale(1.05);
+    }
+
+    .post-hero__scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8, 5, 3, 0.55) 0%, rgba(8, 5, 3, 0.15) 30%, rgba(8, 5, 3, 0.35) 60%, rgba(8, 5, 3, 0.92) 100%);
+    }
+
+    .post-hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 56px) 70px;
+      text-align: center;
+    }
+
+    @keyframes postFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .post-hero__meta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: postFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    }
+
+    .post-hero__meta span {
+      color: var(--gold);
+      margin: 0 4px;
+    }
+
+    .post-hero__title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0.01em;
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      line-height: 1.2;
+      color: var(--cream);
+      text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      animation: postFadeUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+    }
+
+    /* ---------- SCROLL REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .post-hero__meta,
+      .post-hero__title,
+      .reveal {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+      }
+    }
+
+    /* ---------- ARTICLE BODY ---------- */
+    .post-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+
+    .post-body p {
+      font-size: 1.06rem;
+      line-height: 1.95;
+      font-weight: 300;
+      color: #3a332c;
+      margin-bottom: 26px;
+    }
+
+    .post-body p:first-of-type::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.6rem;
+      font-weight: 600;
+      line-height: 1;
+      float: left;
+      padding: 6px 10px 0 0;
+      color: var(--ember);
+    }
+
+    .post-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      color: var(--char);
+      margin: 46px 0 20px;
+      line-height: 1.3;
+    }
+
+    .post-body blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      line-height: 1.6;
+      color: var(--olive);
+      border-left: 3px solid var(--gold);
+      padding: 6px 0 6px 26px;
+      margin: 40px 0;
+    }
+
+    .post-body__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid #e7e0d5;
+    }
+
+    .post-body__tags a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ember);
+      border: 1px solid #ecd9c6;
+      padding: 8px 16px;
+      border-radius: 999px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .post-body__tags a:hover {
+      background: var(--ember);
+      color: #fff;
+      border-color: var(--ember);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="post-topbar">
+    <a href="index.html" class="post-topbar__logo">
+      <img src="logo_clean_resized.png" alt="Masala Hut logo">
+    </a>
+    <a href="blog.html" class="post-topbar__back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Back to Blog</span>
+    </a>
+  </header>
+
+  <section class="post-hero">
+    <div class="post-hero__bg"></div>
+    <div class="post-hero__scrim"></div>
+    <div class="post-hero__content">
+      <p class="post-hero__meta">November 12, 2022 <span>/</span> Catering</p>
+      <h1 class="post-hero__title">Catering That Makes Every Event Memorable</h1>
+    </div>
+  </section>
+
+  <article class="post-body">
+    <p>
+      Every gathering deserves food that matches the moment — whether it's an intimate family
+      dinner, a wedding for three hundred, or a Monday-morning office meeting that needs a little
+      lifting. Our catering team builds each menu the same way we build every dish on the
+      restaurant floor: fresh, generous, and made with genuine care.
+    </p>
+    <p>
+      From the first tasting to the final plate cleared from the table, we handle the details so
+      you don't have to. That means fresh spices, produce sourced the same day where possible, and
+      a serving team that treats your guests like ours.
+    </p>
+
+    <h2>A Menu Built Around You</h2>
+    <p>
+      No two events are the same, and neither are our menus. We sit down with every client to
+      understand the occasion, the guest list, and the flavors that matter most to them — then
+      build a spread that feels tailor-made, not templated.
+    </p>
+
+    <blockquote>
+      "Great catering isn't about feeding a crowd — it's about making every single guest feel
+      looked after."
+    </blockquote>
+
+    <p>
+      Whether it's a full-service banquet or trays dropped off for a smaller gathering, we bring
+      the same kitchen that built Masala Hut's reputation, straight to your doorstep.
+    </p>
+
+    <div class="post-body__tags">
+      <a href="blog.html">Catering</a>
+      <a href="blog.html">Events</a>
+      <a href="blog.html">Hospitality</a>
+    </div>
+  </article>
+
+  <script>
+    // Fade up each article block as it scrolls into view
+    const revealEls = document.querySelectorAll('.post-body > *');
+    revealEls.forEach(el => el.classList.add('reveal'));
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      revealEls.forEach(el => revealObserver.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add('is-visible'));
+    }
+  </script>
+
+</body>
+
+</html>
